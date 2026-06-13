@@ -85,12 +85,17 @@ const Login = () => {
                   </Link>
                 </p>
               </div>
-              <div className="text-center mt-3">
-                <i className="mb-0 text-black-50 bg-white">
-                  Admin Credential <br />• Email : admin@gmail.com • Password :
-                  Admin
-                </i>
-              </div>
+              <p className="small text-muted mt-3 alert alert-info">
+                <strong>Note:</strong> Users can register and log in using their
+                own credentials. Admin access is restricted to the fixed
+                credentials below.
+                <hr />
+                <strong>Admin Credentials:</strong>
+                <br />
+                Email: admin@gmail.com
+                <br />
+                Password: Admin
+              </p>
             </div>
           </div>
         </div>
