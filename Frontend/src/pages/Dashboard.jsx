@@ -54,38 +54,36 @@ const Dashboard = () => {
         </div>
 
         {user?.role === "Admin" && (
-  <div className="row mt-4 g-3">
-    
-    <div className="col-12 col-sm-6 col-md-3">
-      <div className="card p-3 h-100 text-center">
-        <h6>Total Users</h6>
-        <h3>{analytics.totalUsers}</h3>
-      </div>
-    </div>
+          <div className="row mt-4 g-3">
+            <div className="col-12 col-sm-6 col-md-3">
+              <div className="card p-3 h-100 text-center">
+                <h6>Total Users</h6>
+                <h3>{analytics.totalUsers}</h3>
+              </div>
+            </div>
 
-    <div className="col-12 col-sm-6 col-md-3">
-      <div className="card p-3 h-100 text-center border-primary text-primary">
-        <h6>Total Tasks</h6>
-        <h3>{analytics.totalTasks}</h3>
-      </div>
-    </div>
+            <div className="col-12 col-sm-6 col-md-3">
+              <div className="card p-3 h-100 text-center border-primary text-primary">
+                <h6>Total Tasks</h6>
+                <h3>{analytics.totalTasks}</h3>
+              </div>
+            </div>
 
-    <div className="col-12 col-sm-6 col-md-3">
-      <div className="card p-3 h-100 text-center border-success text-success">
-        <h6>Completed</h6>
-        <h3>{analytics.completedTasks}</h3>
-      </div>
-    </div>
+            <div className="col-12 col-sm-6 col-md-3">
+              <div className="card p-3 h-100 text-center border-success text-success">
+                <h6>Completed</h6>
+                <h3>{analytics.completedTasks}</h3>
+              </div>
+            </div>
 
-    <div className="col-12 col-sm-6 col-md-3">
-      <div className="card p-3 h-100 text-center border-warning text-warning">
-        <h6>Pending</h6>
-        <h3>{analytics.pendingTasks}</h3>
-      </div>
-    </div>
-
-  </div>
-)}
+            <div className="col-12 col-sm-6 col-md-3">
+              <div className="card p-3 h-100 text-center border-warning text-warning">
+                <h6>Pending</h6>
+                <h3>{analytics.pendingTasks}</h3>
+              </div>
+            </div>
+          </div>
+        )}
 
         {user?.role === "User" && (
           <div className="alert alert-info mt-4">

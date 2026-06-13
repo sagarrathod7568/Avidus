@@ -36,14 +36,15 @@ const Login = () => {
       <div className="row justify-content-center">
         {/* Responsive constraints: full width on mobile, half on tablets, 1/3 on large screens */}
         <div className="col-12 col-sm-8 col-md-6 col-lg-4">
-          
           <div className="card shadow-sm rounded-4">
             <div className="card-body p-4">
               <h2 className="text-center mb-4">Login</h2>
 
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="email" className="form-label">Email</label>
+                  <label htmlFor="email" className="form-label">
+                    Email
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -56,7 +57,9 @@ const Login = () => {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Password</label>
+                  <label htmlFor="password" className="form-label">
+                    Password
+                  </label>
                   <input
                     type="password"
                     id="password"
@@ -84,12 +87,12 @@ const Login = () => {
               </div>
               <div className="text-center mt-3">
                 <i className="mb-0 text-black-50 bg-white">
-                  Admin Credential <br />• Email : admin@gmail.com • Password : Admin
+                  Admin Credential <br />• Email : admin@gmail.com • Password :
+                  Admin
                 </i>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

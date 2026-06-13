@@ -35,14 +35,15 @@ const Register = () => {
       <div className="row justify-content-center">
         {/* Update these column classes to match your Login component exactly */}
         <div className="col-12 col-sm-8 col-md-6 col-lg-4">
-          
           <div className="card shadow-sm rounded-4">
             <div className="card-body p-4">
               <h2 className="text-center mb-4">Register</h2>
 
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Name</label>
+                  <label htmlFor="email" className="form-label">
+                    Name
+                  </label>
                   <input
                     type="text"
                     name="name"
@@ -54,7 +55,9 @@ const Register = () => {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email</label>
+                  <label htmlFor="email" className="form-label">
+                    Email
+                  </label>
                   <input
                     type="email"
                     name="email"
@@ -66,7 +69,9 @@ const Register = () => {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Password</label>
+                  <label htmlFor="email" className="form-label">
+                    Password
+                  </label>
                   <input
                     type="password"
                     name="password"
@@ -91,7 +96,6 @@ const Register = () => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

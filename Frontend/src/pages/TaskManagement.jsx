@@ -131,66 +131,71 @@ const TaskManagement = () => {
 
         {/* TABLE */}
         <div className="table-responsive">
-  <table className="table table-striped table-hover align-middle">
+          <table className="table table-striped table-hover align-middle">
+            <thead className="table-dark">
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
 
-    <thead className="table-dark">
-      <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-    </thead>
+            <tbody>
+              {tasks.map((task) => (
+                <tr key={task._id}>
+                  <td>{task.title}</td>
 
-    <tbody>
-      {tasks.map((task) => (
-        <tr key={task._id}>
-          
-          <td>{task.title}</td>
+                  <td>
+                    <div
+                      style={{
+                        maxWidth: "250px",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {task.description}
+                    </div>
+                  </td>
 
-          <td>
-            <div style={{ maxWidth: "250px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-              {task.description}
-            </div>
-          </td>
+                  <td>
+                    {user.role === "Admin" ? (
+                      <span
+                        className={`badge rounded-pill ${getStatusBadge(task.status)}`}
+                      >
+                        {task.status}
+                      </span>
+                    ) : (
+                      <select
+                        className="form-select form-select-sm"
+                        value={task.status}
+                        onChange={(e) => updateStatus(task._id, e.target.value)}
+                      >
+                        <option>Pending</option>
+                        <option>In Progress</option>
+                        <option>Completed</option>
+                      </select>
+                    )}
+                  </td>
 
-          <td>
-            {user.role === "Admin" ? (
-              <span className={`badge rounded-pill ${getStatusBadge(task.status)}`}>
-                {task.status}
-              </span>
-            ) : (
-              <select
-                className="form-select form-select-sm"
-                value={task.status}
-                onChange={(e) => updateStatus(task._id, e.target.value)}
-              >
-                <option>Pending</option>
-                <option>In Progress</option>
-                <option>Completed</option>
-              </select>
-            )}
-          </td>
-
-          <td>
-            {user.role !== "Admin" ? (
-              <button
-                className="btn btn-danger btn-sm"
-                onClick={() => deleteTask(task._id)}
-              >
-                Delete
-              </button>
-            ) : (
-              <span className="text-muted small">No Actions</span>
-            )}
-          </td>
-
-        </tr>
-      ))}
-    </tbody>
-
-  </table>
-</div>
+                  <td>
+                    {user.role !== "Admin" ? (
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => deleteTask(task._id)}
+                      >
+                        Delete
+                      </button>
+                    ) : (
+                      <span className="text-muted small">No Actions</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

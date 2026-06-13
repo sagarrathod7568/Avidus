@@ -50,15 +50,8 @@ const login = async (req, res) => {
       email,
     });
 
-    if (
-      user &&
-      (await user.matchPassword(password))
-    ) {
-      await logActivity(
-        user._id,
-        "LOGIN",
-        "User logged in"
-      );
+    if (user && (await user.matchPassword(password))) {
+      await logActivity(user._id, "LOGIN", "User logged in");
 
       return res.json({
         success: true,

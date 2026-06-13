@@ -53,54 +53,50 @@ const UserManagement = () => {
         <h2>User Management</h2>
 
         <div className="table-responsive">
-  <table className="table table-striped table-hover align-middle">
-    
-    <thead className="table-dark">
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-    </thead>
+          <table className="table table-striped table-hover align-middle">
+            <thead className="table-dark">
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
 
-    <tbody>
-      {users.map((user) => (
-        <tr key={user._id}>
-          <td>{user.name}</td>
-          <td>{user.email}</td>
-          <td>
-            <span className="badge bg-secondary">
-              {user.role}
-            </span>
-          </td>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user._id}>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>
+                    <span className="badge bg-secondary">{user.role}</span>
+                  </td>
 
-          <td>
-            <select
-              value={user.status}
-              className="form-select form-select-sm"
-              onChange={(e) => updateStatus(user._id, e.target.value)}
-            >
-              <option value="Active">Active</option>
-              <option value="Inactive">Inactive</option>
-            </select>
-          </td>
+                  <td>
+                    <select
+                      value={user.status}
+                      className="form-select form-select-sm"
+                      onChange={(e) => updateStatus(user._id, e.target.value)}
+                    >
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
+                    </select>
+                  </td>
 
-          <td>
-            <button
-              className="btn btn-danger btn-sm"
-              onClick={() => deleteUser(user._id)}
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-
-  </table>
-</div>
+                  <td>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => deleteUser(user._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

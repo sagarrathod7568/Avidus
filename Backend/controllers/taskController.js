@@ -6,18 +6,15 @@ const createTask = async (req, res) => {
   try {
     const task = await Task.create({
       title: req.body.title,
-      description:
-        req.body.description,
-      status:
-        req.body.status ||
-        "Pending",
+      description: req.body.description,
+      status: req.body.status || "Pending",
       createdBy: req.user._id,
     });
 
     await logActivity(
       req.user._id,
       "TASK_CREATED",
-      `Task created: ${task.title}`
+      `Task created: ${task.title}`,
     );
 
     res.status(201).json(task);
@@ -52,14 +49,9 @@ const getTasks = async (req, res) => {
 };
 
 // Update Own Task
-const updateTask = async (
-  req,
-  res
-) => {
+const updateTask = async (req, res) => {
   try {
-    const task = await Task.findById(
-      req.params.id
-    );
+    const task = await Task.findById(req.params.id);
 
     if (!task) {
       return res.status(404).json({
@@ -67,34 +59,24 @@ const updateTask = async (
       });
     }
 
-    if (
-      task.createdBy.toString() !==
-      req.user._id.toString()
-    ) {
+    if (task.createdBy.toString() !== req.user._id.toString()) {
       return res.status(403).json({
-        message:
-          "Not authorized to update",
+        message: "Not authorized to update",
       });
     }
 
-    task.title =
-      req.body.title ||
-      task.title;
+    task.title = req.body.title || task.title;
 
-    task.description =
-      req.body.description ||
-      task.description;
+    task.description = req.body.description || task.description;
 
-    task.status =
-      req.body.status ||
-      task.status;
+    task.status = req.body.status || task.status;
 
     await task.save();
 
     await logActivity(
       req.user._id,
       "TASK_UPDATED",
-      `Task updated: ${task.title}`
+      `Task updated: ${task.title}`,
     );
 
     res.json(task);
@@ -106,14 +88,9 @@ const updateTask = async (
 };
 
 // Delete Own Task
-const deleteTask = async (
-  req,
-  res
-) => {
+const deleteTask = async (req, res) => {
   try {
-    const task = await Task.findById(
-      req.params.id
-    );
+    const task = await Task.findById(req.params.id);
 
     if (!task) {
       return res.status(404).json({
@@ -121,13 +98,9 @@ const deleteTask = async (
       });
     }
 
-    if (
-      task.createdBy.toString() !==
-      req.user._id.toString()
-    ) {
+    if (task.createdBy.toString() !== req.user._id.toString()) {
       return res.status(403).json({
-        message:
-          "Not authorized to delete",
+        message: "Not authorized to delete",
       });
     }
 
@@ -136,7 +109,7 @@ const deleteTask = async (
     await logActivity(
       req.user._id,
       "TASK_DELETED",
-      `Task deleted: ${task.title}`
+      `Task deleted: ${task.title}`,
     );
 
     res.json({

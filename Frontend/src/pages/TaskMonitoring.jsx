@@ -45,44 +45,40 @@ const TaskMonitoring = () => {
         <h2>Task Monitoring</h2>
 
         <div className="table-responsive">
-  <table className="table table-striped table-hover align-middle">
+          <table className="table table-striped table-hover align-middle">
+            <thead className="table-dark">
+              <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>User</th>
+                <th>Action</th>
+              </tr>
+            </thead>
 
-    <thead className="table-dark">
-      <tr>
-        <th>Title</th>
-        <th>Status</th>
-        <th>User</th>
-        <th>Action</th>
-      </tr>
-    </thead>
+            <tbody>
+              {tasks.map((task) => (
+                <tr key={task._id}>
+                  <td>{task.title}</td>
 
-    <tbody>
-      {tasks.map((task) => (
-        <tr key={task._id}>
-          <td>{task.title}</td>
+                  <td>
+                    <span className="badge bg-info">{task.status}</span>
+                  </td>
 
-          <td>
-            <span className="badge bg-info">
-              {task.status}
-            </span>
-          </td>
+                  <td>{task.createdBy?.name || "N/A"}</td>
 
-          <td>{task.createdBy?.name || "N/A"}</td>
-
-          <td>
-            <button
-              className="btn btn-danger btn-sm"
-              onClick={() => deleteTask(task._id)}
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-
-  </table>
-</div>
+                  <td>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => deleteTask(task._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
