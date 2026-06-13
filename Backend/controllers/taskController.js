@@ -31,11 +31,17 @@ const createTask = async (req, res) => {
 // Get Own Tasks
 const getTasks = async (req, res) => {
   try {
-    const tasks = await Task.find({
-      createdBy: req.user._id,
-    }).sort({
-      createdAt: -1,
-    });
+    let tasks;
+
+    if (req.user.role === "Admin") {
+      tasks = await Task.find().sort({ createdAt: -1 });
+    } else {
+      tasks = await Task.find({
+        createdBy: req.user._id,
+      }).sort({
+        createdAt: -1,
+      });
+    }
 
     res.json(tasks);
   } catch (error) {

@@ -76,6 +76,22 @@ const TaskManagement = () => {
     }
   };
 
+  const getStatusBadge = (status) => {
+    switch (status) {
+      case "Pending":
+        return "bg-warning";
+
+      case "In Progress":
+        return "bg-info";
+
+      case "Completed":
+        return "bg-success";
+
+      default:
+        return "bg-secondary";
+    }
+  };
+
   return (
     <div className="d-flex">
       <Sidebar />
@@ -109,61 +125,72 @@ const TaskManagement = () => {
               onChange={handleChange}
             />
 
-            <button className="btn btn-primary">Create Task</button>
+            <button className="btn btn-primary btn-sm">Create Task</button>
           </form>
         )}
 
         {/* TABLE */}
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
+        <div className="table-responsive">
+  <table className="table table-striped table-hover align-middle">
 
-          <tbody>
-            {tasks.map((task) => (
-              <tr key={task._id}>
-                <td>{task.title}</td>
-                <td>{task.description}</td>
+    <thead className="table-dark">
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
 
-                <td>
-                  {/* 🚫 ADMIN CAN ONLY VIEW */}
-                  {user.role === "Admin" ? (
-                    <span className="badge bg-info">{task.status}</span>
-                  ) : (
-                    <select
-                      className="form-select"
-                      value={task.status}
-                      onChange={(e) => updateStatus(task._id, e.target.value)}
-                    >
-                      <option>Pending</option>
-                      <option>In Progress</option>
-                      <option>Completed</option>
-                    </select>
-                  )}
-                </td>
+    <tbody>
+      {tasks.map((task) => (
+        <tr key={task._id}>
+          
+          <td>{task.title}</td>
 
-                <td>
-                  {/* 🚫 ADMIN NO ACTION */}
-                  {user.role !== "Admin" ? (
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => deleteTask(task._id)}
-                    >
-                      Delete
-                    </button>
-                  ) : (
-                    <span className="text-muted">No Actions</span>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          <td>
+            <div style={{ maxWidth: "250px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+              {task.description}
+            </div>
+          </td>
+
+          <td>
+            {user.role === "Admin" ? (
+              <span className={`badge rounded-pill ${getStatusBadge(task.status)}`}>
+                {task.status}
+              </span>
+            ) : (
+              <select
+                className="form-select form-select-sm"
+                value={task.status}
+                onChange={(e) => updateStatus(task._id, e.target.value)}
+              >
+                <option>Pending</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+              </select>
+            )}
+          </td>
+
+          <td>
+            {user.role !== "Admin" ? (
+              <button
+                className="btn btn-danger btn-sm"
+                onClick={() => deleteTask(task._id)}
+              >
+                Delete
+              </button>
+            ) : (
+              <span className="text-muted small">No Actions</span>
+            )}
+          </td>
+
+        </tr>
+      ))}
+    </tbody>
+
+  </table>
+</div>
       </div>
     </div>
   );
