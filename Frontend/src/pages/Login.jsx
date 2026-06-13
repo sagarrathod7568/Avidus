@@ -82,6 +82,11 @@ const Login = () => {
                   </Link>
                 </p>
               </div>
+              <div className="text-center mt-3">
+                <i className="mb-0 text-black-50 bg-white">
+                  Admin Credential <br />• Email : admin@gmail.com • Password : Admin
+                </i>
+              </div>
             </div>
           </div>
 

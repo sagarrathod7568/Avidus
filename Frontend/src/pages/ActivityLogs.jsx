@@ -32,30 +32,42 @@ const ActivityLogs = () => {
       >
         <h2>Activity Logs</h2>
 
-        <table className="table">
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Action</th>
-              <th>Details</th>
-              <th>Date</th>
-            </tr>
-          </thead>
+        <div className="table-responsive">
+  <table className="table table-striped table-hover align-middle">
 
-          <tbody>
-            {logs.map((log) => (
-              <tr key={log._id}>
-                <td>{log.user?.name}</td>
+    <thead className="table-dark">
+      <tr>
+        <th>User</th>
+        <th>Action</th>
+        <th>Details</th>
+        <th>Date</th>
+      </tr>
+    </thead>
 
-                <td>{log.action}</td>
+    <tbody>
+      {logs.map((log) => (
+        <tr key={log._id}>
+          <td>{log.user?.name || "N/A"}</td>
 
-                <td>{log.details}</td>
+          <td>
+            <span className="badge bg-secondary">
+              {log.action}
+            </span>
+          </td>
 
-                <td>{new Date(log.createdAt).toLocaleString()}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          <td className="text-wrap">
+            {log.details}
+          </td>
+
+          <td>
+            {new Date(log.createdAt).toLocaleString()}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+
+  </table>
+</div>
       </div>
     </div>
   );

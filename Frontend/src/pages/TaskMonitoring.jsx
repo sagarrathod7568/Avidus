@@ -44,37 +44,45 @@ const TaskMonitoring = () => {
       >
         <h2>Task Monitoring</h2>
 
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Status</th>
-              <th>User</th>
-              <th>Action</th>
-            </tr>
-          </thead>
+        <div className="table-responsive">
+  <table className="table table-striped table-hover align-middle">
 
-          <tbody>
-            {tasks.map((task) => (
-              <tr key={task._id}>
-                <td>{task.title}</td>
+    <thead className="table-dark">
+      <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th>User</th>
+        <th>Action</th>
+      </tr>
+    </thead>
 
-                <td>{task.status}</td>
+    <tbody>
+      {tasks.map((task) => (
+        <tr key={task._id}>
+          <td>{task.title}</td>
 
-                <td>{task.createdBy?.name}</td>
+          <td>
+            <span className="badge bg-info">
+              {task.status}
+            </span>
+          </td>
 
-                <td>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => deleteTask(task._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          <td>{task.createdBy?.name || "N/A"}</td>
+
+          <td>
+            <button
+              className="btn btn-danger btn-sm"
+              onClick={() => deleteTask(task._id)}
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+
+  </table>
+</div>
       </div>
     </div>
   );
