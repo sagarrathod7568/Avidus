@@ -1,4 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -6,9 +7,29 @@ const Sidebar = () => {
 
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const logout = () => {
-    localStorage.clear();
-    navigate("/login");
+  const logout = async () => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Logout",
+      cancelButtonText: "Cancel",
+    });
+
+    if (result.isConfirmed) {
+      localStorage.clear();
+
+      await Swal.fire({
+        title: "Logged Out!",
+        text: "You have been logged out successfully!",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      navigate("/login");
+    }
   };
 
   const isActive = (path) => location.pathname === path;
