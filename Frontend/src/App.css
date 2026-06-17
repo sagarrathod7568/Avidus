@@ -1,0 +1,4 @@
+.swal2-shown,
+.swal2-height-auto {
+  padding-right: unset !important;
+}
