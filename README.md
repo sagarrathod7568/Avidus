@@ -1,4 +1,4 @@
-# Avidus - Task Management System
+# Task Management System
 
 A full-stack Task Management application built using React, Node.js, Express.js, and MongoDB Atlas.
 
