@@ -76,7 +76,7 @@ const UserManagement = () => {
                   <td>
                     <select
                       value={user.status}
-                      className="form-select form-select-sm"
+                      className="form-select form-select-sm" style={{minWidth:"100px"}}
                       onChange={(e) => updateStatus(user._id, e.target.value)}
                     >
                       <option value="Active">Active</option>
