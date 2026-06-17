@@ -168,7 +168,7 @@ const TaskManagement = () => {
                       </span>
                     ) : (
                       <select
-                        className="form-select form-select-sm" style={{minWidth:"115px"}}
+                        className="form-select form-select-sm" style={{minWidth:"120px"}}
                         value={task.status}
                         onChange={(e) => updateStatus(task._id, e.target.value)}
                       >
