@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
 import Sidebar from "../components/Sidebar";
+import '../App.css'
 
 const TaskManagement = () => {
   const [tasks, setTasks] = useState([]);
