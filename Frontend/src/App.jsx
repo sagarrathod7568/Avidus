@@ -1,4 +1,8 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import Loader from "./components/Loader";
+import { setLoaderHandler } from "./api/axios";
+import { useLoader } from "./context/LoaderContext";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -13,57 +17,57 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 
 function App() {
+  const { setLoading } = useLoader();
+
+  useEffect(() => {
+    setLoaderHandler(setLoading);
+  }, [setLoading]);
+
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
+    <>
+      <Loader />
 
-      <Route path="/register" element={<Register />} />
+      <Routes>
+        <Route path="/login" element={<Login />} />
 
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
+        <Route path="/register" element={<Register />} />
 
-      <Route
-        path="/tasks"
-        element={
-          <ProtectedRoute>
-            <TaskManagement />
-          </ProtectedRoute>
-        }
-      />
+        <Route path="/" element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route
-        path="/admin/users"
-        element={
-          <AdminRoute>
-            <UserManagement />
-          </AdminRoute>
-        }
-      />
+        <Route path="/tasks" element={
+            <ProtectedRoute>
+              <TaskManagement />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route
-        path="/admin/tasks"
-        element={
-          <AdminRoute>
-            <TaskMonitoring />
-          </AdminRoute>
-        }
-      />
+        <Route path="/admin/users" element={
+            <AdminRoute>
+              <UserManagement />
+            </AdminRoute>
+          }
+        />
 
-      <Route
-        path="/admin/logs"
-        element={
-          <AdminRoute>
-            <ActivityLogs />
-          </AdminRoute>
-        }
-      />
-    </Routes>
+        <Route path="/admin/tasks" element={
+            <AdminRoute>
+              <TaskMonitoring />
+            </AdminRoute>
+          }
+        />
+
+        <Route path="/admin/logs" element={
+            <AdminRoute>
+              <ActivityLogs />
+            </AdminRoute>
+          }
+        />
+      </Routes>
+    </>
   );
 }
 

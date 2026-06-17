@@ -3,12 +3,15 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import { LoaderProvider } from "./context/LoaderContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <AuthProvider>
-      <App />
+      <LoaderProvider>
+        <App />
+      </LoaderProvider>
     </AuthProvider>
-  </BrowserRouter>,
+  </BrowserRouter>
 );
